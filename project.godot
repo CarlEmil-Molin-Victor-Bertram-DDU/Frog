@@ -30,7 +30,7 @@ window/stretch/mode="viewport"
 
 [dotnet]
 
-project/assembly_name="Dungeon Crawler"
+project/assembly_name="Frog"
 
 [editor]
 
