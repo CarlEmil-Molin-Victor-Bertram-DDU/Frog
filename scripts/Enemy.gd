@@ -48,29 +48,18 @@ func _physics_process(delta: float) -> void:
 	if immunity_timer > 0:
 		immunity_timer -= delta
 
-	# Handle knockback
-	if knockback:
-		knockback_timer -= delta
-		if knockback_timer > 0:
-			if dir < 0:
-				velocity.x = move_toward(velocity.x, 300, 300 * delta)
-			else:
-				velocity.x = move_toward(velocity.x, -300, 300 * delta)
-		else:
-			knockback = false  # Stop knockback after the duration is over
-
-	# Only allow movement if knockback is not happening
-	if not knockback:
-		if player_chase and player:
-			var direction = (player.position - position).normalized()
-			velocity.x = direction.x * speed
-			velocity.y = direction.y * speed
-			animated_sprite.flip_h = direction.x < 0
-			dir = direction.x
-		else:
+	if player_chase and player:
+		var direction = (player.position - position).normalized()
+		velocity.x = direction.x * speed
+		velocity.y = direction.y * speed
+		animated_sprite.flip_h = direction.x < 0
+		dir = direction.x
+	else:
 			velocity.x = move_toward(velocity.x, 0, speed * delta)
 			velocity.y = move_toward(velocity.y, 0, speed * delta)
-	
+	if not player_chase:
+		if is_on_wall():
+			velocity.y += 10
 	move_and_slide()
 
 func _on_detection_body_entered(body: Node) -> void:

@@ -127,6 +127,7 @@ func swing_weapon():
 func shoot_arrow():
 	var arrow_instance = arrow_scene.instantiate()
 	get_parent().add_child(arrow_instance)  # Add the arrow to the scene
+	arrow_instance.connect("hit", Callable(self, "_on_arrow_hit"))
 	print("arrow fired")
 
 
@@ -365,7 +366,7 @@ func stop_flashing():
 	is_flashing = false
 	animated_sprite.modulate = Color(1, 1, 1, 1)  # Reset to normal color
 
-func _on_arrow_hit(body) -> void:
-	print("Enemy hit:", body.name)
-	emit_signal("hit",body)
-	
+func _on_arrow_hit(enemy: Node2D):
+	print("Arrow hit enemy: ", enemy.name)
+	emit_signal("hit",enemy)
+	knocked_back = true

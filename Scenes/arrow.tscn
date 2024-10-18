@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://i82l28dikcht"]
 
-[ext_resource type="Texture2D" uid="uid://b0kdhm5c16m03" path="res://resources/Arrow.png" id="1_4k7px"]
+[ext_resource type="Texture2D" uid="uid://c2y2cspj1pby" path="res://resources/Arrow.png" id="1_4k7px"]
 [ext_resource type="Script" path="res://scripts/arrow.gd" id="2_3n2qy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18wit"]
@@ -10,8 +10,8 @@ size = Vector2(32, 4)
 size = Vector2(34, 6)
 
 [node name="arrow" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 0
+collision_layer = 14
+collision_mask = 14
 script = ExtResource("2_3n2qy")
 speed = 800
 

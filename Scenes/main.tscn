@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://ccti537ufbq2j"]
+[gd_scene load_steps=76 format=3 uid="uid://ccti537ufbq2j"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_4iktv"]
 [ext_resource type="Script" path="res://scripts/CharacterScript.gd" id="1_5gctq"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dlt1vdmoi62ly" path="res://resources/smoke2.png" id="4_0erh2"]
 [ext_resource type="Texture2D" uid="uid://c5vd0mrv3acm1" path="res://resources/Stick.png" id="7_fjcsc"]
 [ext_resource type="PackedScene" uid="uid://codjmc6lnljyv" path="res://Healthbar/Healthbar.tscn" id="7_is4sp"]
-[ext_resource type="Texture2D" uid="uid://dsf57bn8ka1ss" path="res://resources/Bow.png" id="8_41exq"]
+[ext_resource type="Texture2D" uid="uid://j4onhbvvchd6" path="res://resources/Bow.png" id="8_41exq"]
 [ext_resource type="Texture2D" uid="uid://el0hjjy2ipyv" path="res://resources/Coin.png" id="8_kggf3"]
 [ext_resource type="PackedScene" uid="uid://jfw3c5yhtcju" path="res://Scenes/coin.tscn" id="9_ckokx"]
 [ext_resource type="AudioStream" uid="uid://bkndths843km1" path="res://resources/whoosh.mp3" id="9_f4jn8"]
@@ -23,7 +23,6 @@
 [ext_resource type="AudioStream" uid="uid://cttjnvywgbkma" path="res://resources/damage.wav" id="16_lbxjs"]
 [ext_resource type="AudioStream" uid="uid://dtg8bajxspet5" path="res://resources/coin.wav" id="16_m35yd"]
 [ext_resource type="AudioStream" uid="uid://ciiiablm4lbpo" path="res://resources/death.wav" id="17_a24ng"]
-[ext_resource type="PackedScene" uid="uid://i82l28dikcht" path="res://Scenes/arrow.tscn" id="19_nbtuk"]
 [ext_resource type="AudioStream" uid="uid://kqm585nht15p" path="res://resources/frog.wav" id="20_0xcyp"]
 [ext_resource type="Texture2D" uid="uid://bsjuotgytyuof" path="res://resources/background.png" id="20_lyej2"]
 [ext_resource type="PackedScene" uid="uid://do3owqimlrgb5" path="res://Scenes/enemy.tscn" id="25_7fko2"]
@@ -1846,7 +1845,6 @@ material = ExtResource("2_4iihf")
 floor_stop_on_slope = false
 floor_constant_speed = true
 script = ExtResource("1_5gctq")
-weapon = "bow"
 arrows = 10
 
 [node name="SprintParticles" type="CPUParticles2D" parent="Player"]
@@ -1930,11 +1928,11 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_dqxsy")
 
 [node name="Bow" type="Sprite2D" parent="Player"]
+visible = false
 position = Vector2(9, 2)
 texture = ExtResource("8_41exq")
 
 [node name="Stick" type="Sprite2D" parent="Player"]
-visible = false
 position = Vector2(2, 5)
 rotation = -0.715585
 texture = ExtResource("7_fjcsc")
@@ -2143,8 +2141,6 @@ texture = ExtResource("20_lyej2")
 [node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer/TextureRect2"]
 color = Color(0.41598, 0.41598, 0.41598, 1)
 
-[node name="arrow" parent="." instance=ExtResource("19_nbtuk")]
-
 [connection signal="hit" from="Player" to="Enemy" method="_on_player_hit"]
 [connection signal="hit" from="Player" to="enemy 2" method="_on_player_hit"]
 [connection signal="hit" from="Player" to="enemy 3" method="_on_player_hit"]
@@ -2154,4 +2150,3 @@ color = Color(0.41598, 0.41598, 0.41598, 1)
 [connection signal="hurt" from="Enemy" to="Player" method="_on_enemy_hurt"]
 [connection signal="hurt" from="enemy 2" to="Player" method="_on_enemy_2_hurt"]
 [connection signal="hurt" from="enemy 3" to="Player" method="_on_enemy_3_hurt"]
-[connection signal="hit" from="arrow" to="Player" method="_on_arrow_hit"]
